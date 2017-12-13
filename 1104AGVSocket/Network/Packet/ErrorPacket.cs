@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AGVSocket.Network.Packet
 {
-    class ErrorTypePacket:ReceiveBasePacket
+    class ErrorPacket:ReceiveBasePacket
     {
         public override void Receive()
         {

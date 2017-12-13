@@ -71,11 +71,6 @@ namespace AGVSocket.Network
                 bp.Receive();
                 bp.ReceiveResponse();
             }
-            catch (PacketException pe)
-            {
-                Logs.Error("接收异常：" + pe.Code);
-                //Send(new SysResponsePacket(1,buffers[));
-            }
             catch (Exception ex)
             {
                 Logs.Error("未知错误:"+ex);

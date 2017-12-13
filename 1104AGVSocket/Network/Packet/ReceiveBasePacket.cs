@@ -1,5 +1,6 @@
 ﻿using AGVSocket.Network.EnumType;
 using AGVSocket.Network.MyException;
+using AGVSocket.NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,17 +43,31 @@ namespace AGVSocket.Network.Packet
 
         public static ReceiveBasePacket Factory(PacketType type, byte[] data)
         {
-            switch (type)
+            try
             {
-                case PacketType.DoneReply:
-                    return new DoneReplyPacket(data);
-                case PacketType.AgvInfo:
-                    return new AgvInfoPacket(data);
-                case PacketType.AgvResponse:
-                    return new AgvResponsePacket(data);
-
-                default:
-                    throw new PacketException("factory", ExceptionCode.NonsupportType);
+                switch (type)
+                {
+                    case PacketType.DoneReply:
+                        return new DoneReplyPacket(data);
+                    case PacketType.AgvInfo:
+                        return new AgvInfoPacket(data);
+                    case PacketType.AgvResponse:
+                        return new AgvResponsePacket(data);
+                    default:
+                        return new ErrorPacket();
+                    // throw new PacketException("factory", ExceptionCode.NonsupportType);
+                }
+            }
+            catch (PacketException pe)
+            {
+                Logs.Error("接收异常：" + pe.Code);
+                //Send(new SysResponsePacket(1,buffers[));
+                return new ErrorPacket();
+            }
+            catch (Exception ex)
+            {
+                Logs.Error("未知错误:" + ex);
+                return new ErrorPacket();
             }
 
         }

@@ -85,7 +85,7 @@
     <Compile Include="Network\Packet\AgvResponsePacket.cs" />
     <Compile Include="Network\Packet\BasePacket.cs" />
     <Compile Include="Network\Packet\DoneReplyPacket.cs" />
-    <Compile Include="Network\Packet\ErrorTypePacket.cs" />
+    <Compile Include="Network\Packet\ErrorPacket.cs" />
     <Compile Include="Network\Packet\ReceiveBasePacket.cs" />
     <Compile Include="Network\Packet\RunPacket.cs" />
     <Compile Include="Network\Packet\SendBasePacket.cs" />
