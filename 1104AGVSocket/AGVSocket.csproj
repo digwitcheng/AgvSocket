@@ -122,9 +122,6 @@
     <Compile Include="Queue\BaseQueue.cs" />
     <Compile Include="Queue\TaskRecvQueue.cs" />
     <Compile Include="ThreadCode\BaseThread.cs" />
-    <Compile Include="ThreadCode\GuiSendThread.cs" />
-    <Compile Include="ThreadCode\SearchRouteThread.cs" />
-    <Compile Include="ThreadCode\TaskReceiveThread.cs" />
     <Compile Include="ThreadCode\TaskSendThread.cs" />
     <Compile Include="Util\ConstDefine.cs" />
     <Compile Include="Util\ConstString.cs" />

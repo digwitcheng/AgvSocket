@@ -63,13 +63,18 @@ namespace AGVSocket.Network
 
             try
             {
-                ReceiveBasePacket bp = ReceiveBasePacket.Factory(type, buffers);
+                ReceiveBasePacket rbp = ReceiveBasePacket.Factory(type, buffers);
                 //bp.ShowMessage += OnMessageEvent;
                 //bp.ErrorMessage += OnErrorEvent;
                 //bp.DataMessage += OnDataMessageEvent;
                 //bp.ReLoad += ReLoadDel;
-                bp.Receive();
-                bp.ReceiveResponse();
+                rbp.Receive();
+                rbp.ReceiveResponse();
+                
+            }
+            catch (PacketException ex)
+            {
+                HanderPacketException(ex);
             }
             catch (Exception ex)
             {
@@ -77,6 +82,11 @@ namespace AGVSocket.Network
             }
              
            
+        }       
+
+        private void HanderPacketException(PacketException ex)
+        {
+            Logs.Error("接收错误 "+ex.Code + "-" + ex.Data);
         }
         public void Send(SendBasePacket pack)
         {

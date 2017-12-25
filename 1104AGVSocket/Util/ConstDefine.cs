@@ -9,5 +9,6 @@ namespace AGVSocket.Util
     class ConstDefine
     {
         public const byte CHECKSUM = 0x7f;
+        public const int TASK_TIME = 300;
     }
 }

@@ -17,35 +17,35 @@ namespace AGVSocket.Network.Packet
         private ushort agvId;            //AGV 编号
         private byte checkSum;           //校验和 前面所有内容按字节累加，再与上 0x7F
 
-        protected ushort Header
+        public ushort Header
         {
             get { return header; }
-            set { header = value; }
+            protected set { header = value; }
         }
-        protected byte Len
+        public byte Len
         {
             get { return len; }
-            set { len = value; }
+            protected set { len = value; }
         }
-        protected byte SerialNum
+        public byte SerialNum
         {
             get { return serialNum; }
-            set { serialNum = value; }
+            protected set { serialNum = value; }
         }
-        protected byte Type
+        public byte Type
         {
             get { return type; }
-            set { type = value; }
+            protected set { type = value; }
         }
-        protected ushort AgvId
+        public ushort AgvId
         {
             get { return agvId; }
-            set { agvId = value; }
+            protected set { agvId = value; }
         }
-        protected byte CheckSum
+        public byte CheckSum
         {
             get { return checkSum; }
-            set { checkSum = value; }
+            protected set { checkSum = value; }
         }
 
         //public abstract BasePacket Create(string msg);

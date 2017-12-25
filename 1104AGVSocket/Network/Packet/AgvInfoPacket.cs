@@ -17,15 +17,9 @@ namespace AGVSocket.Network.Packet
         public AgvInfoPacket(byte[] data)
             : base("AgvInfoPacket", data)
         {
-            try { 
             this.info=new AgvInfo(data,7);
             this.CheckSum = data[NeedLen() - 1];
-            }
-            catch
-            {                //
-                IsCheckSumCorrect = ResponseState.Error;
-                throw;
-            }
+           
         }
 
         public override void Receive()

@@ -20,9 +20,9 @@ namespace AGVSocket.Network.Packet
             this.Header = 0xAA55;
             this.Len = NeedLen();
             this.SerialNum = serialNum;
-            this.Type = (byte)PacketType.Swerve;
+            this.Type = (byte)PacketType.SysResponse;
             this.AgvId = agvId;
-            this.Type = type;
+            this.responseType = type;
             this.responseState = state;
         }
         protected override byte NeedLen()

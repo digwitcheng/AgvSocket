@@ -11,7 +11,12 @@ namespace AGVSocket.Network.Packet
 {
     abstract class ReceiveBasePacket : BasePacket
     {
-        protected ResponseState IsCheckSumCorrect = ResponseState.Correct;
+        private ResponseState isCheckSumCorrect = ResponseState.Correct;
+        public ResponseState IsCheckSumCorrect
+        {
+            get { return isCheckSumCorrect; }
+            protected set { isCheckSumCorrect = value; }
+        }
 
         /// <summary>
         /// 初始化父类中的成员数据
@@ -38,6 +43,7 @@ namespace AGVSocket.Network.Packet
             this.CheckSum = data[NeedLen() - 1];
 
         }
+        protected ReceiveBasePacket() { }
         public abstract void Receive();
         public abstract byte NeedLen();
 
@@ -54,20 +60,32 @@ namespace AGVSocket.Network.Packet
                     case PacketType.AgvResponse:
                         return new AgvResponsePacket(data);
                     default:
-                        return new ErrorPacket();
-                    // throw new PacketException("factory", ExceptionCode.NonsupportType);
+                        // return new ErrorPacket(data);
+                       throw new PacketException("factory", ExceptionCode.NonsupportType);
                 }
             }
             catch (PacketException pe)
             {
-                Logs.Error("接收异常：" + pe.Code);
                 //Send(new SysResponsePacket(1,buffers[));
-                return new ErrorPacket();
+                // throw;
+                if (pe.Code == ExceptionCode.CheckSumError)
+                {
+                    return new ErrorPacket(data);
+                }
+                else if (pe.Code == ExceptionCode.DataMiss && data.Length >= 7)
+                {
+                    return new ErrorPacket(data);
+                }
+                else
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {
                 Logs.Error("未知错误:" + ex);
-                return new ErrorPacket();
+                throw;
+               // return new ErrorPacket(data);
             }
 
         }
@@ -81,11 +99,9 @@ namespace AGVSocket.Network.Packet
             }
             return (byte)(checkSum & 0x7f);
         }
-
         public void ReceiveResponse()
         {
             AgvServerManager.Instance.Send(new SysResponsePacket(this.SerialNum, this.AgvId, this.Type, this.IsCheckSumCorrect));
         }
-
     }
 }

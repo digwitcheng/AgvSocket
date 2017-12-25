@@ -26,16 +26,9 @@ namespace AGVSocket.Network.Packet
         public AgvResponsePacket(byte[] data)
             : base("AgvResponsePacket", data)
         {
-            try
-            {
                 this.responseType = data[7];
                 this.responseState = (ResponseState)data[8];
-            }
-            catch
-            {
-                IsCheckSumCorrect = ResponseState.Error;
-                throw;
-            }
+            
         }
       
 

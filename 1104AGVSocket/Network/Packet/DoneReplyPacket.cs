@@ -16,14 +16,8 @@ namespace AGVSocket.Network.Packet
         public DoneReplyPacket(byte[] data)
             : base("DoneReplyPacket", data) 
         {
-            try { 
             this.doneStyle = (OprationState)data[7];
-            }
-            catch
-            {
-                IsCheckSumCorrect = ResponseState.Error;
-                throw;
-            }
+           
         }
 
 
