@@ -13,6 +13,14 @@ namespace AGVSocket.Network
         private MyPoint desNode;
         private AgvDirection speed;
         private DriftAngle agvAngle;
+        #region Properties
+        public MyPoint CurNode { get { return curNode; } }
+        public MyPoint DesNode { get { return desNode; } }
+        public AgvDirection Speed { get { return speed; } }
+        public DriftAngle AgvAngle { get { return agvAngle; } }
+       
+
+        #endregion
 
         public CurrentLocation(byte[] data,ref int offset)
         {
