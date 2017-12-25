@@ -60,7 +60,7 @@ namespace AGVSocket.Network
             Buffer.BlockCopy(e.Data, e.DataOffset, buffers, 0, e.DataLength);
             // var text = Encoding.UTF8.SetBytes(e.Data, e.DataOffset, e.DataLength);
 
-
+            
             try
             {
                 ReceiveBasePacket rbp = ReceiveBasePacket.Factory(type, buffers);

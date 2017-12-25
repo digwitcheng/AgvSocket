@@ -46,9 +46,6 @@ namespace AGVSocket
             asm.StartServer(Convert.ToInt32(listPort.Text));
             ShowMsg(string.Format( "监听端口{0}中......", listPort.Text));
 
-                        
-           
-
 
             //Destination des=new Destination();
             //RunPacket runPacket=new RunPacket(1,1,AgvDirection.Forward,1500,)
