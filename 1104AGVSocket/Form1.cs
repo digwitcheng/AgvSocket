@@ -25,12 +25,13 @@ namespace AGVSocket
         public Form1()
         {
             InitializeComponent();
+            ConnectToServer();
             ListenAgv();
         }
 
         private void button1Click(object sender, EventArgs e)
         {
-            ConnectToServer();
+           
            
         }
         void ListenAgv()
@@ -66,7 +67,7 @@ namespace AGVSocket
             }
             catch (Exception ex)
             {
-                MessageBox.Show("连接异常:" + ex.ToString());
+                ShowMsg("连接到控制中心异常，请检查控制中心服务是否开启！");
             }
         }
         protected void ClientMessage(object sender, MessageEventArgs e)
