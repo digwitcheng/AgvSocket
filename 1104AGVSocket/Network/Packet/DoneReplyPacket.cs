@@ -2,6 +2,7 @@
 using AGVSocket.Network.MyException;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace AGVSocket.Network.Packet
 
         public override void Receive()
         {
-            
+            Debug.WriteLine("完成标识:{0},消息是否正确：{1}",doneStyle, this.IsCheckSumCorrect);
         }
 
         public override byte NeedLen()

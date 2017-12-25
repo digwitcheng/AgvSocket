@@ -2,6 +2,7 @@
 using AGVSocket.Network.MyException;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,9 @@ namespace AGVSocket.Network.Packet
 
         public override void Receive()
         {
-           
+            Debug.WriteLine(string.Format("小车{0}:当前位置({1},{2})", this.AgvId, info.CurLocation.CurNode.X, this.info.CurLocation.CurNode.Y));
+            Debug.WriteLine(string.Format("小车{0}:目的位置({1},{2})", this.AgvId, info.CurLocation.DesNode.X, this.info.CurLocation.DesNode.Y));
+            Debug.WriteLine("-----------------");
         }
 
         public override byte NeedLen()

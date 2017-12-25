@@ -2,6 +2,7 @@
 using AGVSocket.Network.MyException;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace AGVSocket.Network.Packet
 
         public override void Receive()
         {
-            
+            Debug.WriteLine("小车{0}应答报文，应答类型{1},是否正确收到：{2}", this.AgvId, this.responseState, this.responseState);
         }
 
         public override byte NeedLen()
