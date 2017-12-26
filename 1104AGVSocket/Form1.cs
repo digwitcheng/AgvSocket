@@ -22,12 +22,17 @@ namespace AGVSocket
     {
         static ClientManager cm;
         AgvServerManager asm;
+        List<MyPoint> route = new List<MyPoint>();
         public Form1()
         {
             InitializeComponent();
             ConnectToServer();
             ListenAgv();
+            CreateRoute();
+
         }
+
+       
 
         private void button1Click(object sender, EventArgs e)
         {
@@ -138,19 +143,48 @@ namespace AGVSocket
 
         private void button4_Click(object sender, EventArgs e)
         {
-            TrayPacket tp = new TrayPacket(1, 1, TrayMotion.TopLeft);
-            asm.Send(tp);
-        }
+            try
+            {               
+                //TrayPacket tp = new TrayPacket(1, 1, TrayMotion.TopLeft);
+                //asm.Send(tp);
+                for (int i = 0; i < route.Count; i++)
+                { 
+                    RunPacket rp = new RunPacket(1, 4, AgvDirection.Forward, 1500, new Destination(new MyPoint(route[i].X, route[i].Y), new MyPoint(route[route.Count - 1].X, route[route.Count - 1].Y), new DriftAngle(90), TrayMotion.TopLeft));
+                    asm.Send(rp);
+                    
+                }
+                route.Reverse();
+             //   MessageBox.Show("发送成功");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("发送失败");
+            }
 
+        }
+        private void CreateRoute()
+        {
+            route.Add(new MyPoint(0, 6000));
+            route.Add(new MyPoint(0, 4500));
+            route.Add(new MyPoint(0, 3000));
+            route.Add(new MyPoint(0, 1500));
+            route.Add(new MyPoint(0, 0));
+            //route.Add(new MyPoint(1500, 4500));
+            //route.Add(new MyPoint(3000, 4500));
+        }
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             //SwervePacket sp = new SwervePacket(1, 1, new DriftAngle(90));
             //asm.Send(sp);
+
+
 
             //RunPacket rp = new RunPacket(1, 1, AgvDirection.Forward, 1500, new Destination(new MyPoint(44000, 0), new MyPoint(48000, 0), new DriftAngle(90), TrayMotion.DownLeft));
             //asm.Send(rp);
 
            
         }
+
     }
 }

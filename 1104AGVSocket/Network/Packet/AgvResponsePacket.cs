@@ -35,7 +35,7 @@ namespace AGVSocket.Network.Packet
 
         public override void Receive()
         {
-            Debug.WriteLine("小车{0}应答报文，应答类型{1},是否正确收到：{2}", this.AgvId, this.responseState, this.responseState);
+            Debug.WriteLine("小车{0}应答报文，应答类型{1},是否正确收到：{2},序列号：{3}", this.AgvId,this.responseType, this.responseState,this.SerialNum);
         }
 
         public override byte NeedLen()

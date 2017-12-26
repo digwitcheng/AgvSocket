@@ -539,9 +539,9 @@ namespace Cowboy.Sockets
                 )
             {
                 //if (ex is SocketException)
-                    Logs.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
+                Logs.Error(string.Format("Session [{0}] exception occurred, [{1}].", this, ex.Message), ex);
 
-              Close(true); // catch specified exception then intend to close the session
+                Close(true); // catch specified exception then intend to close the session
 
                 return true;
             }
