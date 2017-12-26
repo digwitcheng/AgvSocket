@@ -67,7 +67,7 @@ namespace AGVSocket.Network
                 //bp.ShowMessage += OnMessageEvent;
                 //bp.ErrorMessage += OnErrorEvent;
                 //bp.DataMessage += OnDataMessageEvent;
-                //bp.ReLoad += ReLoadDel;
+                //bp.ReLoad += ReLoadDel; 
                 rbp.Receive();
                 rbp.ReceiveResponse();
                 
