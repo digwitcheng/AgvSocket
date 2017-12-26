@@ -18,13 +18,15 @@ namespace AGVSocket.Network.Packet
             : base("DoneReplyPacket", data) 
         {
             this.doneStyle = (OprationState)data[7];
-           
+            uint a = 0xB1;
         }
 
 
         public override void Receive()
         {
-            Debug.WriteLine("完成标识:{0},消息是否正确：{1}",doneStyle, this.IsCheckSumCorrect);
+            Debug.WriteLine("完成标识:{0},消息是否正确：{1},序列号:{2}",doneStyle, this.IsCheckSumCorrect,this.SerialNum);
+           this.ReceiveResponse();
+
         }
 
         public override byte NeedLen()
