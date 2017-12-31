@@ -22,7 +22,7 @@ namespace AGVSocket
     {
         static ClientManager cm;
         AgvServerManager asm;
-        List<MyPoint> route = new List<MyPoint>();
+        List<MyPoint> route = new List<MyPoint>();       
         public Form1()
         {
             InitializeComponent();
@@ -144,17 +144,18 @@ namespace AGVSocket
         private void button4_Click(object sender, EventArgs e)
         {
             try
-            {               
-                //TrayPacket tp = new TrayPacket(1, 1, TrayMotion.TopLeft);
-                //asm.Send(tp);
-                for (int i = 0; i < route.Count; i++)
-                { 
-                    RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(route[i].X, route[i].Y), new MyPoint(route[route.Count - 1].X, route[route.Count - 1].Y), new DriftAngle(90), TrayMotion.TopLeft));
-                    asm.Send(rp);
-                    
-                }
-                route.Reverse();
-             //   MessageBox.Show("发送成功");
+            {
+                uint len = 600;
+              //  TrayPacket tp = new TrayPacket(1, 4, TrayMotion.TopLeft);
+                RunPacket rp = new RunPacket(1, 4, AgvDirection.Forward, 1500, new Destination(new MyPoint(8 * len,5 * len), new MyPoint(8 * len, 5 * len), new DriftAngle(90), TrayMotion.TopLeft));
+                asm.Send(rp);
+                //for (int i = 0; i < route.Count; i++)
+                //{
+                //    RunPacket rp = new RunPacket(1, 4, AgvDirection.Forward, 1500, new Destination(new MyPoint(route[i].X * len, route[i].Y * len), new MyPoint(route[route.Count - 1].X * len, route[route.Count - 1].Y * len), new DriftAngle(90), TrayMotion.None));
+                //    asm.Send(rp);
+
+                //}
+                //route.Reverse();
             }
             catch (Exception ex)
             {
@@ -164,13 +165,11 @@ namespace AGVSocket
         }
         private void CreateRoute()
         {
-            route.Add(new MyPoint(0, 6000));
-            route.Add(new MyPoint(0, 4500));
-            route.Add(new MyPoint(0, 3000));
-            route.Add(new MyPoint(0, 1500));
-            route.Add(new MyPoint(0, 0));
-            //route.Add(new MyPoint(1500, 4500));
-            //route.Add(new MyPoint(3000, 4500));
+            route.Add(new MyPoint(8, 7));
+            route.Add(new MyPoint(8,6));
+            route.Add(new MyPoint(8, 5));
+            route.Add(new MyPoint(8, 4));
+            route.Add(new MyPoint(8, 3));
         }
         
         private void timer1_Tick(object sender, EventArgs e)
