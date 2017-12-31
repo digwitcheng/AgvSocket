@@ -147,7 +147,7 @@ namespace AGVSocket
             {
                 uint len = 600;
               //  TrayPacket tp = new TrayPacket(1, 4, TrayMotion.TopLeft);
-                RunPacket rp = new RunPacket(1, 4, AgvDirection.Forward, 1500, new Destination(new MyPoint(8 * len,5 * len), new MyPoint(8 * len, 5 * len), new DriftAngle(90), TrayMotion.TopLeft));
+                RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(8 * len,5 * len), new MyPoint(8 * len, 5 * len), new AgvDriftAngle(90), TrayMotion.TopLeft));
                 asm.Send(rp);
                 //for (int i = 0; i < route.Count; i++)
                 //{

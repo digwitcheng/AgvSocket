@@ -9,7 +9,7 @@ namespace AGVSocket.Network.Packet
 {
     class SwervePacket:SendBasePacket
     {
-        private DriftAngle desDir;//目标方向
+        private AgvDriftAngle desDir;//目标方向
       //  public DriftAngle DesDir {set { desDir = value; } }
 
         
@@ -17,7 +17,7 @@ namespace AGVSocket.Network.Packet
         {
             return 10;
         }
-        public SwervePacket(byte serialNum, ushort agvId, DriftAngle direction)
+        public SwervePacket(byte serialNum, ushort agvId, AgvDriftAngle direction)
         {
             this.Header = 0xAA55;
             this.Len = NeedLen();

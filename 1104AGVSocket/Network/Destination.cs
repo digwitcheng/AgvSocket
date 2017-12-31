@@ -11,7 +11,7 @@ namespace AGVSocket.Network
     {
         private MyPoint midPoint;         //中间位置
         private MyPoint desPoint;         //目标位置
-        private DriftAngle desAngle;    //目标方向(坐标x轴正方向的夹角)
+        private AgvDriftAngle desAngle;    //目标方向(坐标x轴正方向的夹角)
         private TrayMotion desMotion;   //目标动作
 
         #region Properties
@@ -29,7 +29,7 @@ namespace AGVSocket.Network
                 desPoint = value;
             }
         }
-        public DriftAngle DesAngle
+        public AgvDriftAngle DesAngle
         {
             set
             {
@@ -45,7 +45,7 @@ namespace AGVSocket.Network
         }
         #endregion
 
-        public Destination(MyPoint midPoint, MyPoint desPoint, DriftAngle desAngle, TrayMotion motion)
+        public Destination(MyPoint midPoint, MyPoint desPoint, AgvDriftAngle desAngle, TrayMotion motion)
         {
             this.MidPoint = midPoint;
             this.DesPoint = desPoint;

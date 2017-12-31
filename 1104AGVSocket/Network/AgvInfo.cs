@@ -11,20 +11,20 @@ namespace AGVSocket.Network
     {
         private CurrentLocation curLocation;
         private AgvMotionState agvMotion;
-        private TrayState curTrayState;
+        private TrayState tray;
         private byte electricity;
         private ObstacleAvoidSwitch obstacleSwitch;
         private AlarmState alarm;
-        private OrderExec order;
+        private OrderExecState orderExec;
 
         #region Properties
         public CurrentLocation CurLocation { get { return curLocation; } }
         public AgvMotionState AgvMotion { get { return agvMotion; } }
-        public TrayState CurTrayState { get { return curTrayState; } }
+        public TrayState Tray { get { return tray; } }
         public byte Electricity { get { return electricity; } }
         public ObstacleAvoidSwitch ObstacleSwitch { get { return obstacleSwitch; } }
         public AlarmState Alarm { get { return alarm; } }
-        public OrderExec Order { get { return order; } }
+        public OrderExecState OrderExec { get { return orderExec; } }
 
         #endregion
 
@@ -32,11 +32,11 @@ namespace AGVSocket.Network
         {
             this.curLocation = new CurrentLocation(data, ref offset);
             this.agvMotion = (AgvMotionState)data[offset++];
-            this.curTrayState =(TrayState) data[offset++];
+            this.tray =(TrayState) data[offset++];
             this.electricity = data[offset++];
             this.obstacleSwitch =(ObstacleAvoidSwitch) data[offset++];
             this.alarm =(AlarmState) data[offset++];
-            this.order =(OrderExec) data[offset++];
+            this.orderExec =(OrderExecState) data[offset++];
         }
 
     }

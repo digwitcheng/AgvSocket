@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AGVSocket.Network.EnumType
 {
-    enum OrderExec:byte
+    enum OrderExecState:byte
     {
         Free = 0x00,       //空闲
         Init = 0x01,       //初始化

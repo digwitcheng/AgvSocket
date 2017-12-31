@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AGVSocket.Network.EnumType
 {
+    /// <summary>
+    /// 小车运动状态
+    /// </summary>
     enum AgvMotionState:byte
     {
         /*
