@@ -1,4 +1,5 @@
 ﻿using AGV.Event;
+using AGVSocket.DataBase;
 using AGVSocket.Network;
 using AGVSocket.Network.EnumType;
 using AGVSocket.Network.Packet;
@@ -127,18 +128,20 @@ namespace AGVSocket
 
         private void button3Click(object sender, EventArgs e)
         {
-            if (cm == null)
-            {
-                ShowMsg("请先连接");
-                return;
-            }
-            string path="../../AGV.xml";
-            if (!File.Exists(path))
-            {
-                ShowMsg("文件不存在");
-                return;
-            }
-             cm.Send(MessageType.AgvFile, path);
+            SqlManager.Instance.GetElecMapInfo();
+
+            //if (cm == null)
+            //{
+            //    ShowMsg("请先连接");
+            //    return;
+            //}
+            //string path="../../AGV.xml";
+            //if (!File.Exists(path))
+            //{
+            //    ShowMsg("文件不存在");
+            //    return;
+            //}
+            // cm.Send(MessageType.AgvFile, path);
         }
 
         private void button4_Click(object sender, EventArgs e)
