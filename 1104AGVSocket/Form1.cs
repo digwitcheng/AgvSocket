@@ -149,7 +149,7 @@ namespace AGVSocket
                 //asm.Send(tp);
                 for (int i = 0; i < route.Count; i++)
                 { 
-                    RunPacket rp = new RunPacket(1, 4, AgvDirection.Forward, 1500, new Destination(new MyPoint(route[i].X, route[i].Y), new MyPoint(route[route.Count - 1].X, route[route.Count - 1].Y), new DriftAngle(90), TrayMotion.TopLeft));
+                    RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(route[i].X, route[i].Y), new MyPoint(route[route.Count - 1].X, route[route.Count - 1].Y), new DriftAngle(90), TrayMotion.TopLeft));
                     asm.Send(rp);
                     
                 }

@@ -17,18 +17,18 @@ namespace AGVSocket.Network.Packet
         //private byte checkSum;   
         //private ushort agvId;                      //AGV 编号
 
-        private AgvDirection direction;                     //行驶方向 1-正向行驶，2-反向行驶（倒车行
+        private MoveDirection direction;                     //行驶方向 1-正向行驶，2-反向行驶（倒车行
         private ushort speed;                      //行驶速度  每秒毫米，如1.5米/秒：1500（0x05DC）
        // private byte[] locations = new byte[19];   //目标位置  
         private Destination locations;
 
-        public AgvDirection Direction {  set{this.direction=value;} }
+        public MoveDirection Direction {  set{this.direction=value;} }
         public ushort Speed { set { this.speed = value; } }
         public Destination Locations { set { this.locations = value; } }
 
 
 
-        public RunPacket(byte serialNum, ushort agvId, AgvDirection direction, ushort speed, Destination location)
+        public RunPacket(byte serialNum, ushort agvId, MoveDirection direction, ushort speed, Destination location)
         {
             this.Header = 0xAA55;
             this.Len = NeedLen();

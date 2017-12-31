@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AGVSocket.Network
 {
-    
+    /// <summary>
+    /// 车头偏转角度0~360
+    /// </summary>
     class DriftAngle
     {
         private ushort angle;

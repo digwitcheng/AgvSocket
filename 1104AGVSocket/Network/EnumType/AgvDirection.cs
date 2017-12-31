@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AGVSocket.Network.EnumType
 {
-    enum AgvDirection:byte
+    enum MoveDirection:byte
     {
         /// <summary>
         /// 正向行驶

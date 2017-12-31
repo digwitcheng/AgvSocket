@@ -11,12 +11,12 @@ namespace AGVSocket.Network
     {
         private MyPoint curNode;
         private MyPoint desNode;
-        private AgvDirection speed;
+        private MoveDirection moveDir;
         private DriftAngle agvAngle;
         #region Properties
         public MyPoint CurNode { get { return curNode; } }
         public MyPoint DesNode { get { return desNode; } }
-        public AgvDirection Speed { get { return speed; } }
+        public MoveDirection Speed { get { return moveDir; } }
         public DriftAngle AgvAngle { get { return agvAngle; } }
        
 
@@ -30,7 +30,7 @@ namespace AGVSocket.Network
             UInt32 desX = MyBitConverter.ToUInt32(data, ref offset);
             UInt32 desY = MyBitConverter.ToUInt32(data,ref offset);
             this.desNode = new MyPoint(desX, desY);
-            this.speed = (AgvDirection)data[offset++];
+            this.moveDir = (MoveDirection)data[offset++];
             this.agvAngle =new DriftAngle( MyBitConverter.ToUInt16(data,ref offset));
         }
     }
