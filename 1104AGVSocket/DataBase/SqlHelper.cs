@@ -11,6 +11,7 @@ namespace DataBase
     public class SqlHelper
     {
         //public static string LocalDbConnStr = "";
+        //Data Source=DIGWITC;Initial Catalog=agv;Integrated Security=True
         public static string CONECTIONG_STRING = "Data Source=LocalHost;Initial Catalog=agv;User Id=sa;Password=1046541763;";
         #region 获得一个本地数据库(SQLSERVER2008)的SQL连接
         public static SqlConnection GetSqlConnection()

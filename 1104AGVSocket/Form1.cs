@@ -4,6 +4,7 @@ using AGVSocket.Network;
 using AGVSocket.Network.EnumType;
 using AGVSocket.Network.Packet;
 using AGVSocket.NLog;
+using AGVSocket.Util;
 using client20710711;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace AGVSocket
     {
         static ClientManager cm;
         AgvServerManager asm;
-        List<MyPoint> route = new List<MyPoint>();       
+        List<MyPoint> route = new List<MyPoint>();  
+     
+
         public Form1()
         {
             InitializeComponent();
@@ -31,13 +34,33 @@ namespace AGVSocket
             ListenAgv();
             CreateRoute();
 
+            StartThread();
+
         }
 
+        private void StartThread()
+        {
+            UpdataSqlThread.Instance.Start();
+            UpdataSqlThread.Instance.ShowMessage += ShowMsg;
+
+        }
+        private void EndThread()
+        {
+            UpdataSqlThread.Instance.End();
+            UpdataSqlThread.Instance.ShowMessage -= ShowMsg;
+        }
+
+        
+
+        void ShowMsg(object sender,MessageEventArgs e)
+        {
+            ShowMsg(e.Message);
+        }
        
 
         private void button1Click(object sender, EventArgs e)
         {
-           
+            ConnectToServer();
            
         }
         void ListenAgv()
@@ -80,7 +103,20 @@ namespace AGVSocket
         }
         void HandleData(object sender, MessageEventArgs e)
         {
-            Debug.WriteLine(e.Message);
+            string[] location = e.Message.Split(':');
+            uint x = Convert.ToUInt32(location[0]);
+            uint y = Convert.ToUInt32(location[1]);
+            if (e.Type == MessageType.move)
+            {                   
+                //  TrayPacket tp = new TrayPacket(1, 4, TrayMotion.TopLeft);
+                RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new AgvDriftAngle(90), TrayMotion.None));
+                asm.Send(rp);
+            }
+            //else if (e.Type == MessageType.none)//stop
+            //{
+            //    RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 0, new Destination(new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new AgvDriftAngle(90), TrayMotion.None));
+            //    asm.Send(rp);
+            //}
         }
         void LoadFile()
         {
@@ -128,7 +164,7 @@ namespace AGVSocket
 
         private void button3Click(object sender, EventArgs e)
         {
-            SqlManager.Instance.GetElecMapInfo();
+            UpdataSqlThread.Instance.GetElecMapInfo();
 
             //if (cm == null)
             //{
@@ -148,7 +184,7 @@ namespace AGVSocket
         {
             try
             {
-                uint len = 600;
+                uint len = 1000;
               //  TrayPacket tp = new TrayPacket(1, 4, TrayMotion.TopLeft);
                 RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(8 * len,5 * len), new MyPoint(8 * len, 5 * len), new AgvDriftAngle(90), TrayMotion.TopLeft));
                 asm.Send(rp);
@@ -186,6 +222,11 @@ namespace AGVSocket
             //asm.Send(rp);
 
            
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            EndThread();
         }
 
     }
