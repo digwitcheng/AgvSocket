@@ -17,7 +17,7 @@ namespace AGVSocket.Network.MyException
         /// <param name="code">出错类型</param>
         public PacketException(string message,ExceptionCode code)
         {
-            Message = message;
+            Message = message+":"+code;
             Code = code;
         }
 

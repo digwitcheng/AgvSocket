@@ -10,7 +10,7 @@ namespace AGVSocket.Util
     {
         public const byte CHECKSUM = 0x7f;
 
-        public const int UPDATA_SQL_TIME = 100;
+        public const int UPDATA_SQL_TIME = 50;
 
         public const int minX = 5;
         public const int maxX = 7;
