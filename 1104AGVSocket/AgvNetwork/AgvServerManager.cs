@@ -9,11 +9,22 @@ using AGV.Event;
 using AGVSocket.NLog;
 using AGVSocket.Network.MyException;
 using System.Diagnostics;
+using System.Collections.Concurrent;
 
 namespace AGVSocket.Network
 {
     class AgvServerManager:ServerManager
     {
+
+
+        private readonly ConcurrentDictionary<ushort, AgvInfo> agvInfo = new ConcurrentDictionary<ushort, AgvInfo>();
+        public ConcurrentDictionary<ushort, AgvInfo> GetAgvInfo
+        {
+            get
+            {
+                return agvInfo;
+            }
+        }
          private static AgvServerManager instance;
         public static AgvServerManager Instance
         {
@@ -29,14 +40,14 @@ namespace AGVSocket.Network
         private AgvServerManager() { }
         protected override void server_ClientConnected(object sender, Cowboy.Sockets.TcpClientConnectedEventArgs e)
         {
-            string str = string.Format("TCP client {0} has connected.", e.Session.RemoteEndPoint);
+            string str = string.Format("小车连接成功，", e.Session.RemoteEndPoint);
             Console.WriteLine(str);
             OnMessageEvent(this, new PackMessageEventArgs(str));
         }
 
         protected override void server_ClientDisconnected(object sender, Cowboy.Sockets.TcpClientDisconnectedEventArgs e)
         {
-            string str = string.Format("TCP client {0} has disconnected.", e.Session.RemoteEndPoint);
+            string str = string.Format("小车断开连接，", e.Session.RemoteEndPoint);
             Console.WriteLine(str);
             OnMessageEvent(this, new PackMessageEventArgs(str));
         }
@@ -96,24 +107,9 @@ namespace AGVSocket.Network
             }
             catch { }
         }
-        //public void Send(RunPacket rp)
-        //{
-        //    try
-        //    {
-        //        _server.Broadcast(rp.GetBytes());
-        //    }
-        //    catch
-        //    {
-               
-        //    }
-        //}
-        //public void Send(SwervePacket swerve)
-        //{
-        //    _server.Broadcast(swerve.GetBytes());
-        //}
-        //public void Send(TrayPacket tray)
-        //{
-        //    _server.Broadcast(tray.GetBytes());
-        //}
+        public void AddOrUpdate(ushort agvId, AgvInfo info)
+        {
+            agvInfo.AddOrUpdate(agvId, info, (key, oldValue) => info);
+        }
     }
 }

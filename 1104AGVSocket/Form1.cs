@@ -4,6 +4,8 @@ using AGVSocket.Network;
 using AGVSocket.Network.EnumType;
 using AGVSocket.Network.Packet;
 using AGVSocket.NLog;
+using AGVSocket.Queue;
+using AGVSocket.ThreadCode;
 using AGVSocket.Util;
 using client20710711;
 using System;
@@ -22,7 +24,7 @@ namespace AGVSocket
 {
     public partial class Form1 : Form
     {
-        static ClientManager cm;
+       public  static ClientManager cm;
         AgvServerManager asm;
         List<MyPoint> route = new List<MyPoint>();  
      
@@ -43,11 +45,23 @@ namespace AGVSocket
             UpdataSqlThread.Instance.Start();
             UpdataSqlThread.Instance.ShowMessage += ShowMsg;
 
+            SendPacketThread.Instance.Start();
+            SendPacketThread.Instance.ShowMessage += ShowMsg;
+
+            ReSendPacketThread.Instance.Start();
+            ReSendPacketThread.Instance.ShowMessage += ShowMsg;
+
         }
         private void EndThread()
         {
-            UpdataSqlThread.Instance.End();
             UpdataSqlThread.Instance.ShowMessage -= ShowMsg;
+            UpdataSqlThread.Instance.End();
+
+            SendPacketThread.Instance.ShowMessage-= ShowMsg;
+            SendPacketThread.Instance.End();
+
+            ReSendPacketThread.Instance.ShowMessage -= ShowMsg;
+            ReSendPacketThread.Instance.End();
         }
 
         
@@ -74,10 +88,6 @@ namespace AGVSocket
            
             asm.StartServer(Convert.ToInt32(listPort.Text));
             ShowMsg(string.Format( "监听端口{0}中......", listPort.Text));
-
-
-            //Destination des=new Destination();
-            //RunPacket runPacket=new RunPacket(1,1,AgvDirection.Forward,1500,)
 
         }
        
@@ -106,11 +116,21 @@ namespace AGVSocket
             string[] location = e.Message.Split(':');
             uint x = Convert.ToUInt32(location[0]);
             uint y = Convert.ToUInt32(location[1]);
+            uint endX = Convert.ToUInt32(location[2]);
+            uint endY = Convert.ToUInt32(location[3]);
             if (e.Type == MessageType.move)
             {                   
                 //  TrayPacket tp = new TrayPacket(1, 4, TrayMotion.TopLeft);
-                RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new AgvDriftAngle(90), TrayMotion.None));
-                asm.Send(rp);
+                RunPacket rp = new RunPacket(1, 4, MoveDirection.Forward, 1500, new Destination(new MyPoint(x * ConstDefine.CELL_UNIT, y * ConstDefine.CELL_UNIT), new MyPoint(endX * ConstDefine.CELL_UNIT, endY * ConstDefine.CELL_UNIT), new AgvDriftAngle(90), TrayMotion.TopLeft));
+                //asm.Send(rp);
+                SendPacketQueue.Instance.Enqueue(rp);
+                Console.WriteLine(x + "," + y + "->" + endX + "," + endY);
+            }
+            else if (e.Type == MessageType.reStart)
+            {
+                TrayPacket tp = new TrayPacket(1, 4, TrayMotion.TopLeft);
+               // asm.Send(tp);
+                SendPacketQueue.Instance.Enqueue(tp);
             }
             //else if (e.Type == MessageType.none)//stop
             //{

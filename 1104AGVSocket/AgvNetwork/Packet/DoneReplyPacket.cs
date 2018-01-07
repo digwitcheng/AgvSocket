@@ -1,5 +1,7 @@
-﻿using AGVSocket.Network.EnumType;
+﻿using AGVSocket.DataBase;
+using AGVSocket.Network.EnumType;
 using AGVSocket.Network.MyException;
+using DataBase;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,6 +28,15 @@ namespace AGVSocket.Network.Packet
         {
             Debug.WriteLine("完成标识:{0},消息是否正确：{1},序列号:{2}",doneStyle, this.IsCheckSumCorrect,this.SerialNum);
            this.ReceiveResponse();
+
+           if (doneStyle == OprationState.Loaded)
+           {
+                   //string str = string.Format("update Vehicle set TrayState={0} where Id={1}",
+                   //    (byte)0x05,
+                   //    this.AgvId);
+                   //UpdataSqlThread.Instance.Update(str);
+               Form1.cm.Send(client20710711.MessageType.reStart, this.AgvId+"");
+           }
 
         }
 

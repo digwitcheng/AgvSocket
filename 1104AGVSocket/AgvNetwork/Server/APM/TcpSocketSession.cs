@@ -355,8 +355,7 @@ namespace Cowboy.Sockets
             }
             catch (Exception ex) // catch exceptions then log then re-throw
             {
-                HandleReceiveOperationException(ex);
-                throw;
+               HandleReceiveOperationException(ex);
             }
         }
 
@@ -517,7 +516,6 @@ namespace Cowboy.Sockets
             }
 
             CloseIfShould(ex);
-            throw new TcpSocketException(ex.Message, ex);
         }
 
         private bool IsSocketTimeOut(Exception ex)
