@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using Cowboy.Buffer;
 using AGVSocket.NLog;
+using System.Threading.Tasks;
 //using Logrila.Logging;
 
 namespace Cowboy.Sockets
@@ -75,6 +76,8 @@ namespace Cowboy.Sockets
 
                 ContinueAcceptSession(_listener);
 
+               // Task.Factory.StartNew(()=>ContinueAcceptSession(_listener));
+                int a = 0;
             }
         }
 
@@ -128,18 +131,20 @@ namespace Cowboy.Sockets
 
         private void ContinueAcceptSession(TcpListener listener)
         {
-            try
-            {
-                listener.BeginAcceptTcpClient(new AsyncCallback(HandleTcpClientAccepted), listener);
-            }
-            catch (Exception ex)
-            {
-                if (!ShouldThrow(ex))
+           
+                try
                 {
-                    Logs.Error(ex.Message, ex);
+                    listener.BeginAcceptTcpClient(new AsyncCallback(HandleTcpClientAccepted), listener);
                 }
-                else throw;
-            }
+                catch (Exception ex)
+                {
+                    if (!ShouldThrow(ex))
+                    {
+                        Logs.Error(ex.Message, ex);
+                    }
+                    else throw;
+                }
+           
         }
 
         private void HandleTcpClientAccepted(IAsyncResult ar)
@@ -170,17 +175,22 @@ namespace Cowboy.Sockets
 
                 if (isSessionStarted)
                 {
-                    ContinueAcceptSession(listener);
+                   ContinueAcceptSession(listener);
                 }
                 else
                 {
+                    
                     CloseSession(session); // session was not started
                 }
             }
             catch (Exception ex)
             {
+               
+                //CloseSession(session);
+                //ContinueAcceptSession(listener);
                 if (!ShouldThrow(ex))
                 {
+                   ContinueAcceptSession((TcpListener)ar.AsyncState);
                     Logs.Error(ex.Message, ex);
                 }
                 else throw;
@@ -207,7 +217,7 @@ namespace Cowboy.Sockets
             {
                 return false;
             }
-            return false;
+            return true;
         }
 
         #endregion

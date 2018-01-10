@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Agv
+namespace AGV_V1._0.Util
 {
-
-    //派发动作指令
-    class TaskManager
+    class MapFileUtil
     {
-
     }
 }

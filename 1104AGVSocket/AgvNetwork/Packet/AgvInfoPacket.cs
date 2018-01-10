@@ -1,4 +1,5 @@
 ﻿using AGV_V1._0.Queue;
+using AGVSocket.Agv;
 using AGVSocket.Network.EnumType;
 using AGVSocket.Network.MyException;
 using System;
@@ -36,7 +37,7 @@ namespace AGVSocket.Network.Packet
             //Debug.WriteLine(string.Format("小车{0}:目的位置({1},{2})", this.AgvId, info.CurLocation.DesNode.X, this.info.CurLocation.DesNode.Y));
             //Debug.WriteLine("-----------------");
 
-            AgvServerManager.Instance.AddOrUpdate(this.AgvId, this.info);
+            VehicleManager.Instance.AddOrUpdate(this.AgvId, this.info);
 
         }
 

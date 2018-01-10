@@ -1,4 +1,6 @@
 ﻿using AGV.Event;
+using AGV_V1._0.Remoting;
+using AGVSocket.Agv;
 using AGVSocket.DataBase;
 using AGVSocket.Network;
 using AGVSocket.Network.EnumType;
@@ -16,6 +18,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,10 +39,28 @@ namespace AGVSocket
             InitializeComponent();
             ConnectToServer();
             ListenAgv();
-            CreateRoute();
 
             StartThread();
+            InitVehicles();
 
+
+            
+        }
+
+        private void InitVehicles()
+        {
+            VehicleManager.Instance.InitVehicles();
+        }
+        private void Remote()
+        {
+            TcpChannel chan = new TcpChannel();
+            ChannelServices.RegisterChannel(chan);
+            // Create an instance of the remote object
+            RouteRemoteObject remoteObject = (RouteRemoteObject)Activator.GetObject(typeof(RouteRemoteObject), "tcp://localhost:" + ConstDefine.REMOTE_PORT + "/" + ConstDefine.REMOTE_NAME);
+
+
+            List<string> list = remoteObject.Search(new List<string>(), new List<string>(), 4, 91, 62, 1, 1, 1, 1);
+            Console.WriteLine(list[0]);
         }
 
         private void StartThread()
@@ -221,14 +244,6 @@ namespace AGVSocket
                 MessageBox.Show("发送失败");
             }
 
-        }
-        private void CreateRoute()
-        {
-            route.Add(new MyPoint(8, 7));
-            route.Add(new MyPoint(8,6));
-            route.Add(new MyPoint(8, 5));
-            route.Add(new MyPoint(8, 4));
-            route.Add(new MyPoint(8, 3));
         }
         
         private void timer1_Tick(object sender, EventArgs e)

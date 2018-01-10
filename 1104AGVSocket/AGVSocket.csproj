@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,10 +54,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agv\TaskManager.cs" />
+    <Compile Include="Agv\Vehicle.cs" />
+    <Compile Include="Agv\VehicleManager.cs" />
     <Compile Include="DataBase\SqlHelper.cs" />
+    <Compile Include="Map\ElecMap.cs" />
+    <Compile Include="Map\MapNode.cs" />
+    <Compile Include="Map\MapNodeType.cs" />
+    <Compile Include="Map\MyLocation.cs" />
     <Compile Include="Queue\ReSendPacketQueue.cs" />
     <Compile Include="Queue\SendPacketQueue.cs" />
+    <Compile Include="Remoting\RouteRemoteObject.cs" />
     <Compile Include="ThreadCode\ReSendPacketThread.cs" />
     <Compile Include="ThreadCode\SendPacketThread.cs" />
     <Compile Include="ThreadCode\UpdataSqlThread.cs" />
@@ -129,6 +136,8 @@
     <Compile Include="Queue\CmdTxtQueue.cs" />
     <Compile Include="ThreadCode\BaseThread.cs" />
     <Compile Include="Util\ConstDefine.cs" />
+    <Compile Include="Util\FileUtil.cs" />
+    <Compile Include="Util\MapFileUtil.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,7 +170,9 @@
     <Content Include="Dll\client20710711.dll" />
     <Content Include="Dll\Newtonsoft.Json.dll" />
     <Content Include="Dll\NLog.dll" />
+    <Content Include="Map\ElcMap.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

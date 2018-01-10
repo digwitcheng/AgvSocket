@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AGVSocket.Network
 {
+    [Serializable]
     class MyPoint
     {
-        private UInt32 x;
-        private UInt32 y;
+        private uint x;
+        private uint y;
 
-        public UInt32 Y
+        public uint Y
         {
             get { return y; }
             set { y = value; }
         }
 
-        public UInt32 X
+        public uint X
         {
             get { return x; }
             set { x = value; }
@@ -33,10 +35,15 @@ namespace AGVSocket.Network
             this.y = poUInt32.y;
 
         }
-        public MyPoint(UInt32 x, UInt32 y)
+        public MyPoint(uint x, uint y)
         {
             this.x = x;
             this.y = y;
+        }
+        public MyPoint(int x, int y)
+        {
+            this.x = (uint)x;
+            this.y = (uint)y;
         }
     }
 }

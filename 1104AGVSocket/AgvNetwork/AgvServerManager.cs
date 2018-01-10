@@ -16,7 +16,7 @@ namespace AGVSocket.Network
     class AgvServerManager:ServerManager
     {
 
-
+       
         private readonly ConcurrentDictionary<ushort, AgvInfo> agvInfo = new ConcurrentDictionary<ushort, AgvInfo>();
         public ConcurrentDictionary<ushort, AgvInfo> GetAgvInfo
         {
