@@ -8,10 +8,10 @@ using System.Windows.Forms;
 using System.Xml;
 using AGV_V1._0.Algorithm;
 using System.IO;
-using AGVSocket.Network;
-using AGVSocket.NLog;
-using AGVSocket.Util;
-using AGVSocket.Agv;
+using AGV_V1._0.Network;
+using AGV_V1._0.NLog;
+using AGV_V1._0.Util;
+using AGV_V1._0.Agv;
 
 namespace AGV_V1._0
 {

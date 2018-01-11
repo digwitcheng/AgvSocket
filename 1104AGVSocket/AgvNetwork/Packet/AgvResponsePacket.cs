@@ -1,7 +1,7 @@
-﻿using AGVSocket.Network.EnumType;
-using AGVSocket.Network.MyException;
-using AGVSocket.Queue;
-using AGVSocket.ThreadCode;
+﻿using AGV_V1._0.Network.EnumType;
+using AGV_V1._0.Network.MyException;
+using AGV_V1._0.Queue;
+using AGV_V1._0.ThreadCode;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.Packet
+namespace AGV_V1._0.Network.Packet
 {
     class AgvResponsePacket:ReceiveBasePacket
     {

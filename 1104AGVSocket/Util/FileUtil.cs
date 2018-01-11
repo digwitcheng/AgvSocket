@@ -1,6 +1,6 @@
 ﻿using AGV_V1._0.Util;
-using AGVSocket.NLog;
-using AGVSocket.Util;
+using AGV_V1._0.NLog;
+using AGV_V1._0.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

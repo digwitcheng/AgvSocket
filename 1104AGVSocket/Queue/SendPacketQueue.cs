@@ -1,12 +1,12 @@
 ﻿using AGV_V1._0;
-using AGVSocket.Network.Packet;
+using AGV_V1._0.Network.Packet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Queue
+namespace AGV_V1._0.Queue
 {
     class SendPacketQueue:BaseQueue<SendBasePacket>
     {

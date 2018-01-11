@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.NLog
+namespace AGV_V1._0.NLog
 {
     /// <summary>
     /// 项目日志封装

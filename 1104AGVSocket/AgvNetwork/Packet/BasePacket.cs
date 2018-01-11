@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.Packet
+namespace AGV_V1._0.Network.Packet
 {
     abstract class BasePacket
     {

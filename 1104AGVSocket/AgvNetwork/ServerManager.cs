@@ -1,4 +1,4 @@
-﻿using AGVSocket.NLog;
+﻿using AGV_V1._0.NLog;
 using Cowboy.Sockets;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using AGV;
 using AGV.Event;
 
-namespace AGVSocket.Network
+namespace AGV_V1._0.Network
 {
      abstract class ServerManager : IDisposable
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AGVSocket.Properties {
+namespace AGV_V1._0.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

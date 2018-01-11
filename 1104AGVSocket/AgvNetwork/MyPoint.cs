@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network
+namespace AGV_V1._0.Network
 {
     [Serializable]
     class MyPoint

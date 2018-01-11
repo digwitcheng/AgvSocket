@@ -1,13 +1,13 @@
-﻿using AGVSocket.Network.EnumType;
-using AGVSocket.Network.MyException;
-using AGVSocket.NLog;
+﻿using AGV_V1._0.Network.EnumType;
+using AGV_V1._0.Network.MyException;
+using AGV_V1._0.NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.Packet
+namespace AGV_V1._0.Network.Packet
 {
     abstract class ReceiveBasePacket : BasePacket
     {

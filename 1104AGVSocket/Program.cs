@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AGVSocket
+namespace AGV_V1._0
 {
     static class Program
     {

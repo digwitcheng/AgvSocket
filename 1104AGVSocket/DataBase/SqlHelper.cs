@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Data;
-using AGVSocket.NLog;
+using AGV_V1._0.NLog;
 
 namespace DataBase
 {

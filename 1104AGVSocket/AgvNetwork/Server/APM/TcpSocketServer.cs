@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using Cowboy.Buffer;
-using AGVSocket.NLog;
+using AGV_V1._0.NLog;
 using System.Threading.Tasks;
 //using Logrila.Logging;
 

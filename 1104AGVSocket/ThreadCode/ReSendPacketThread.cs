@@ -1,8 +1,8 @@
 ﻿using AGV_V1._0.Network.ThreadCode;
-using AGVSocket.Network;
-using AGVSocket.Network.Packet;
-using AGVSocket.NLog;
-using AGVSocket.Queue;
+using AGV_V1._0.Network;
+using AGV_V1._0.Network.Packet;
+using AGV_V1._0.NLog;
+using AGV_V1._0.Queue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AGVSocket.ThreadCode
+namespace AGV_V1._0.ThreadCode
 {
     class ReSendPacketThread:BaseThread
     {

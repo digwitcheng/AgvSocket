@@ -1,4 +1,4 @@
-﻿using AGVSocket.Network.Packet;
+﻿using AGV_V1._0.Network.Packet;
 using AGV;
 using System;
 using System.Collections.Generic;
@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AGV.Event;
-using AGVSocket.NLog;
-using AGVSocket.Network.MyException;
+using AGV_V1._0.NLog;
+using AGV_V1._0.Network.MyException;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 
-namespace AGVSocket.Network
+namespace AGV_V1._0.Network
 {
     class AgvServerManager:ServerManager
     {

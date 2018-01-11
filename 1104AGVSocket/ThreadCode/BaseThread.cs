@@ -1,4 +1,4 @@
-﻿using AGVSocket.NLog;
+﻿using AGV_V1._0.NLog;
 using client20710711;
 using System;
 using System.Collections.Generic;

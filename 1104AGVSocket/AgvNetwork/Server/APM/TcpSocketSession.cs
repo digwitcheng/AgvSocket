@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Cowboy.Buffer;
-using AGVSocket.NLog;
+using AGV_V1._0.NLog;
 //using Logrila.Logging;
 
 namespace Cowboy.Sockets

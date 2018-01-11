@@ -1,11 +1,11 @@
-﻿using AGVSocket.Network.EnumType;
+﻿using AGV_V1._0.Network.EnumType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.Packet
+namespace AGV_V1._0.Network.Packet
 {
     class TrayPacket:SendBasePacket
     {

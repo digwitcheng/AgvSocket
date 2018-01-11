@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.EnumType
+namespace AGV_V1._0.Network.EnumType
 {
     enum ObstacleAvoidSwitch :byte
     {

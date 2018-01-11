@@ -1,14 +1,14 @@
 ﻿using AGV.Event;
 using AGV_V1._0.Remoting;
-using AGVSocket.Agv;
-using AGVSocket.DataBase;
-using AGVSocket.Network;
-using AGVSocket.Network.EnumType;
-using AGVSocket.Network.Packet;
-using AGVSocket.NLog;
-using AGVSocket.Queue;
-using AGVSocket.ThreadCode;
-using AGVSocket.Util;
+using AGV_V1._0.Agv;
+using AGV_V1._0.DataBase;
+using AGV_V1._0.Network;
+using AGV_V1._0.Network.EnumType;
+using AGV_V1._0.Network.Packet;
+using AGV_V1._0.NLog;
+using AGV_V1._0.Queue;
+using AGV_V1._0.ThreadCode;
+using AGV_V1._0.Util;
 using client20710711;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AGVSocket
+namespace AGV_V1._0
 {
     public partial class Form1 : Form
     {

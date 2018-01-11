@@ -1,4 +1,4 @@
-﻿namespace AGVSocket
+﻿namespace AGV_V1._0
 {
     partial class Form1
     {

@@ -1,6 +1,6 @@
-﻿using AGVSocket.DataBase;
-using AGVSocket.Network.EnumType;
-using AGVSocket.Network.MyException;
+﻿using AGV_V1._0.DataBase;
+using AGV_V1._0.Network.EnumType;
+using AGV_V1._0.Network.MyException;
 using DataBase;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.Packet
+namespace AGV_V1._0.Network.Packet
 {
     class DoneReplyPacket:ReceiveBasePacket
     {

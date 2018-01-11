@@ -1,7 +1,7 @@
 ﻿using AGV_V1._0.Queue;
-using AGVSocket.Agv;
-using AGVSocket.Network.EnumType;
-using AGVSocket.Network.MyException;
+using AGV_V1._0.Agv;
+using AGV_V1._0.Network.EnumType;
+using AGV_V1._0.Network.MyException;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AGVSocket.Network.Packet
+namespace AGV_V1._0.Network.Packet
 {
     class AgvInfoPacket:ReceiveBasePacket
     {
@@ -27,9 +27,9 @@ namespace AGVSocket.Network.Packet
 
         public override void Receive()
         {
-            //string str=string.Format("update Vehicle set CurX={0} ,CurY={1}, DesX={2}, DesY={3} where Id={4}",
-            //    info.CurLocation.CurNode.X,info.CurLocation.CurNode.Y,
-            //    info.CurLocation.DesNode.X,info.CurLocation.DesNode.Y,
+            //string str = string.Format("update Vehicle set CurX={0} ,CurY={1}, DesX={2}, DesY={3} where Id={4}",
+            //    info.CurLocation.CurNode.X, info.CurLocation.CurNode.Y,
+            //    info.CurLocation.DesNode.X, info.CurLocation.DesNode.Y,
             //    this.AgvId);
             //CmdTxtQueue.Instance.Enqueue(str);
 
